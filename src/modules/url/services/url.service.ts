@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { isUrlExpired } from '../../../utils/utils';
 import { Url } from '../entities/url.entity';
 import { UrlRepository } from '../repository/url.repository';
 
@@ -7,6 +8,12 @@ export class UrlService {
   constructor(@Inject(UrlRepository) private repository: UrlRepository) {}
 
   async shortUrl(requestUrl: string, originalUrl: string) {
+    const existentShortened = await this.repository.findByUrl(originalUrl);
+
+    if (existentShortened && !isUrlExpired(existentShortened.expiration)) {
+      return existentShortened.shortenedUrl;
+    }
+
     const expiration = new Date();
     expiration.setDate(expiration.getDate() + 1);
 
@@ -27,9 +34,8 @@ export class UrlService {
 
   async findShortUrlBySlug(slug: string) {
     const existentUrl = await this.repository.findBySlug(slug);
-    const today = new Date();
 
-    if (new Date(existentUrl?.expiration) < today) {
+    if (isUrlExpired(existentUrl.expiration)) {
       throw new Error('url expired');
     }
 

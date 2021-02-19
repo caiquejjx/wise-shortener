@@ -11,4 +11,9 @@ export class UrlRepository extends Repository<Url> {
     const existentUrl = await this.findOne({ where: { slug } });
     return existentUrl;
   }
+
+  async findByUrl(url: string) {
+    const existentUrl = await this.findOne({ where: { originalUrl: url } });
+    return existentUrl;
+  }
 }

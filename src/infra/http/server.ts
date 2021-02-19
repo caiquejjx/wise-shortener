@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../../app.module';
 import { NestApplication } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 
 export class Server {
   private server: NestApplication;
@@ -19,6 +20,7 @@ export class Server {
         "Server has to be built before started, use the static 'build' function before",
       );
     this.server.listen(this.port || 3000);
+    this.server.useGlobalPipes(new ValidationPipe());
 
     console.log(`Server running at ${this.port || 3000}`);
   }
