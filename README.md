@@ -4,12 +4,10 @@
 </p>
 
 
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Descrição
 Encurtador de URLs
-
+Documentação no endpoint `/docs`
+Aplicação disponivel no [heroku](https://wise-shortener.herokuapp.com)
 
 ## Funcionamento
 A aplicação recebe uma url pelo corpo da requisição do endpoint `/encurtador` e então ela salva a URL recebida no banco de dados, juntamente do código gerado para encurtar a url e retorna essa nova URL encurtada que consiste no endereço da aplicação + /código de encurtamento (6 letras e números gerados randômicamente).
