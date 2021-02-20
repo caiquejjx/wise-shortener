@@ -10,6 +10,10 @@
 ## Descrição
 Encurtador de URLs
 
+
+## Funcionamento
+A aplicação recebe uma url pelo corpo da requisição do endpoint `/encurtador` e então ela salva a URL recebida no banco de dados, juntamente do código gerado para encurtar a url e retorna essa nova URL encurtada que consiste no endereço da aplicação + /código de encurtamento (6 letras e números gerados randômicamente).
+Ao receber uma requisição GET na url encurtada a partir do código de encurtamento que vai no parâmetro da requisição ele busca no banco de dados a url original e retorna um redirect para essa url
 ## Iniciar a aplicação
 
 ```bash
@@ -33,6 +37,6 @@ $ docker exec -it wise-shortener sh -c "yarn test:cov"
 
 ```
 
-- Author - [Caique Porfirio](https://github.com/caiquejjx)
+- Autor - [Caique Porfirio](https://github.com/caiquejjx)
 
 
