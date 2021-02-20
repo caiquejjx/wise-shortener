@@ -26,8 +26,11 @@ import { UrlService } from '../services/url.service';
 export class UrlController {
   constructor(@Inject(UrlService) private service: UrlService) {}
 
-  @ApiTags('endpoints')
-  @ApiOperation({ summary: 'Redireciona para a url original' })
+  @ApiTags('Endpoints')
+  @ApiOperation({
+    summary:
+      'Redireciona para a url original (Pelo swagger ocorre um erro de cors devido ao fato da url para redirecionar nao possuir o header cors)',
+  })
   @ApiResponse({ status: 400, description: 'Não encontrado' })
   @ApiResponse({ status: 498, description: 'Expirado' })
   @ApiResponse({ status: 302, description: 'Redirecionado com sucesso' })
@@ -54,6 +57,7 @@ export class UrlController {
 
     return { url: result.originalUrl };
   }
+
   @ApiOperation({ summary: 'Encurta uma url' })
   @ApiResponse({
     status: 400,
@@ -64,7 +68,7 @@ export class UrlController {
     type: UrlResponseDTO,
   })
   @Post('encurtador')
-  @ApiTags('endpoints')
+  @ApiTags('Endpoints')
   async create(@Req() req: Request, @Body() urlReqDto: UrlRequestDTO) {
     const requestUrl = req.protocol + '://' + req.get('host') + '/';
 
