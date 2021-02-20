@@ -14,6 +14,7 @@ import { UrlModule } from './modules/url/url.module';
       database: process.env.POSTGRES_DB,
       entities: [Url],
       synchronize: true,
+      ssl: true,
     }),
     UrlModule,
   ],
