@@ -35,7 +35,7 @@ export class UrlService {
   async findShortUrlBySlug(slug: string) {
     const existentUrl = await this.repository.findBySlug(slug);
 
-    if (isUrlExpired(existentUrl.expiration)) {
+    if (isUrlExpired(existentUrl?.expiration)) {
       throw new Error('url expired');
     }
 

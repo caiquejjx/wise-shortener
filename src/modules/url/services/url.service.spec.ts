@@ -34,7 +34,7 @@ describe('Url service', () => {
   afterEach(async () => {
     await testingModule.close();
     jest.spyOn(global.Math, 'random').mockRestore();
-    jest.spyOn(global, 'Date').mockRestore();
+    MockDate.reset();
   });
 
   it('should correctly short a url', async () => {
@@ -52,7 +52,7 @@ describe('Url service', () => {
 
     const correctExpiration = new Date();
 
-    correctExpiration.setDate(correctExpiration.getDate() + 1);
+    correctExpiration.setDate(correctExpiration.getDate() + 2);
 
     await urlService.shortUrl(requestUrl, 'http://teste.com/teste');
 
