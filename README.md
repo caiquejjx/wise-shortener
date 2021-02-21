@@ -5,8 +5,8 @@
 
 
 ## Descrição
-Encurtador de URLs
-Documentação no endpoint `/docs`
+Encurtador de URLs <br/>
+Documentação no endpoint `/docs` <br/>
 Aplicação disponivel no [heroku](https://wise-shortener.herokuapp.com)
 
 ## Funcionamento
